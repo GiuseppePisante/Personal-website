@@ -577,72 +577,215 @@
             }
         }
 
-        /* My Story – clickable title (Option 1) */
+        /* My Story Section - Flip Cards */
         .story-title {
-            margin-bottom: 1.2rem;
-            /* un po’ più tight */
+            margin-bottom: 3rem;
+            text-align: center;
         }
 
         .story-toggle {
             all: unset;
-            display: inline-flex;
-            align-items: baseline;
-            gap: 0.75rem;
-            cursor: pointer;
             font-family: var(--serif);
             font-size: 2.2rem;
-            /* uguale al tuo h2 */
             letter-spacing: -0.5px;
             color: var(--primary);
+            cursor: default;
         }
 
-        .story-toggle:hover .story-chevron {
-            transform: translateY(-1px);
+        .story-cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            perspective: 1000px;
+            max-width: 1200px;
+            margin: 20px auto;
         }
 
-        .story-chevron {
-            font-size: 1.1rem;
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .flip-card:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .flip-card-front {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #e8e8e8;
+            color: white;
+            font-weight: 600;
+            font-size: 1.3rem;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        /* Overlay opzionale per le immagini */
+        .flip-card-front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+        .flip-card-front {
+            z-index: 0;
+        }
+
+        .flip-card-front::after {
+            content: attr(data-title);
+            position: relative;
+            z-index: 2;
+        }
+
+        .flip-card-back {
+            background: white;
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+            overflow-y: auto;
+            padding: 2rem;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-top: 1.5rem;
+        }
+
+        .flip-card-back h3 {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            margin-top: 0;
+            color: var(--primary);
+            letter-spacing: -0.3px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .flip-card-back p {
+            font-size: 0.95rem;
             color: var(--secondary);
-            opacity: 0.7;
-            transition: transform 0.35s ease, opacity 0.35s ease;
+            line-height: 1.7;
+            text-align: left;
+            margin: 0;
+            width: 100%;
         }
 
-        /* Collapsible behavior */
-        .about-content.collapsed {
-            max-height: 0;
+        .flip-card-back .story-label {
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            margin-top: 0;
+            font-weight: 600;
+            text-align: center;
+            width: 100%;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .story-cards-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 100%;
+            }
+
+            .flip-card {
+                aspect-ratio: 1 / 1;
+            }
+
+            .flip-card-back {
+                padding: 1.5rem;
+            }
+
+            .flip-card-back h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .flip-card-back p {
+                font-size: 0.9rem;
+            }
+        }
+
+        .video-card {
+            padding: 0;
             overflow: hidden;
-            opacity: 0;
-            transform: translateY(-8px);
-            transition:
-                max-height 0.9s cubic-bezier(0.25, 0.8, 0.25, 1),
-                opacity 0.6s ease,
-                transform 0.6s ease;
         }
 
-        .about-content.expanded {
-            max-height: 2200px;
-            opacity: 1;
-            transform: translateY(0);
-            transition:
-                max-height 1.9s cubic-bezier(0.25, 0.8, 0.25, 1),
-                opacity 1s ease,
-                transform 1s ease;
+        .video-card video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
 
-
-
-        .about-content.expanded {
-            max-height: 2200px;
-            /* abbastanza per i tuoi paragrafi */
-            opacity: 1;
-            transform: translateY(0);
+        .video-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 1;
         }
 
-        /* Chevron rotation when expanded */
-        .story-toggle[aria-expanded="true"] .story-chevron {
-            transform: rotate(90deg);
-            opacity: 0.9;
+        .video-card .video-title {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         }
+
 
         /* Featured Work – clickable title */
         .work-title {
@@ -827,55 +970,196 @@
 
     </section>
 
-    <!-- About Section -->
+    <!-- My Story Section - Flip Cards -->
     <section class="about" id="about">
         <h2 class="story-title">
-            <button class="story-toggle" type="button" aria-expanded="false" aria-controls="story-content">
-                <span>My Story</span>
-                <span class="story-chevron" aria-hidden="true">↘</span>
-            </button>
+            <span class="story-toggle">My Professional Story</span>
         </h2>
 
-        <div class="about-content collapsed" id="story-content">
-
-            <div>
-                <p>
-                    From an early age, I have been fascinated by the idea that multiple perspectives exist and that
-                    these different viewpoints can coexist to make our world better. To understand all these
-                    perspectives, I have tried to remain as open-minded as possible and explore new experiences. I began
-                    by pursuing a deeper understanding of the technical side of things, so I started studying mechanical
-                    engineering. Although not my true passion, I learned how to engage with rigorous and analytical
-                    individuals and to work diligently on subjects that didn't fully captivate me.
-                </p>
-                <p>
-                    Unsatisfied with my studies and seeking a different environment, I discovered SQUID as an
-                    opportunity to learn from a new angle. At SQUID, I started supervising the SQUID app, a news
-                    aggregator active in more than 60 countries globally. My role focused on content supervision and
-                    managing partnerships with publishing partners. I gradually transitioned into product management,
-                    working closely with the development team to improve user experience and retention. After 1.3 years,
-                    I had developed clear ideas about the product's direction, and to fully commit to product
-                    development, I decided to relocate to the Stockholm headquarters.
-                </p>
+        <div class="story-cards-container">
+            <!-- Card 1: Understanding Perspectives -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <!-- MODIFICA: Sostituisci './images/chapter1.jpg' con il percorso della tua immagine -->
+                    <div class="flip-card-front" style="background-image: url('./rettoratoPoli.jpg');">
+                        <span>1. Curiosity Driven</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="story-label">Chapter One</span>
+                        <h3>Understanding Perspectives</h3>
+                        <p>From an early age, I have been fascinated by the idea that multiple perspectives exist and
+                            that these different viewpoints can coexist to make our world better. To understand all
+                            these perspectives, I have tried to remain as open-minded as possible and explore new
+                            experiences. I began by pursuing a deeper understanding of the technical side of things, so
+                            I started studying mechanical engineering. Although not my true passion, I learned how to
+                            engage with rigorous and analytical individuals and to work diligently on subjects that
+                            didn't fully captivate me.</p>
+                    </div>
+                </div>
             </div>
-            <div>
-                <p>
-                    After one year working part-time in Milan, I was promoted to full-time Italy Country Manager, with
-                    the mission to scale the Italian team from 2 to 7 people. I was also tasked with building the SQUID
-                    Business app from the ground up for the Italian market: establishing its identity, mission,
-                    go-to-market strategy, and growth plan. Over these 2.5 years, I realized I lacked the computer
-                    science skills necessary to follow development closely. This gap motivated me to pursue a master's
-                    degree in High Performance Computing Engineering, with a major in computer science and AI.
-                </p>
-                <p>
-                    Starting with limited foundational knowledge, I committed two years to mastering the fundamentals of
-                    computer science, programming, data structures, algorithms, machine learning, and AI. Right before
-                    graduation, I tested my abilities at the Google AI Hackathon, where my team reached the final (top 4
-                    out of 60), with Edvige—an AI-powered agent that can increase knowledge worker productivity by up to
-                    8 hours per week. I believe what distinguished our team was the product's clear identity, thoughtful
-                    design, and compelling mission that resonated with the judges.
-                </p>
+
+            <!-- Card 2: SQUID & Product Discovery -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <!-- MODIFICA: Sostituisci './images/chapter2.jpg' con il percorso della tua immagine -->
+                    <div class="flip-card-front" style="background-image: url('./ufficio.png');">
+                        <span>2. Product Discovery</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="story-label">Chapter Two</span>
+                        <h3>SQUID Journey Begins</h3>
+                        <p>Unsatisfied with my studies and seeking a different environment, I discovered SQUID as an
+                            opportunity to learn from a new angle. At SQUID, I started supervising the SQUID app, a news
+                            aggregator active in more than 60 countries globally. My role focused on content supervision
+                            and managing partnerships with publishing partners. I gradually transitioned into product
+                            management, working closely with the development team to improve user experience and
+                            retention. After 1.3 years, I had developed clear ideas about the product's direction, and
+                            to fully commit to product development, I decided to relocate to the Stockholm headquarters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Leadership & Growth -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <!-- MODIFICA: Sostituisci './images/chapter3.jpg' con il percorso della tua immagine -->
+                    <div class="flip-card-front" style="background-image: url('./Corrieredellasera.png');">
+                        <span>3. Leading Growth</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="story-label">Chapter Three</span>
+                        <h3>Country Manager Era</h3>
+                        <p>After one year working part-time in Milan, I was promoted to full-time Italy Country Manager,
+                            with the mission to scale the Italian team from 2 to 7 people. I was also tasked with
+                            building the SQUID Business app from the ground up for the Italian market: establishing its
+                            identity, mission, go-to-market strategy, and growth plan. Over these 2.5 years, I realized
+                            I lacked the computer science skills necessary to follow development closely. This gap
+                            motivated me to pursue a master's degree in High Performance Computing Engineering, with a
+                            major in computer science and AI.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Technical Mastery & AI -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <!-- MODIFICA: Sostituisci './images/chapter4.jpg' con il percorso della tua immagine -->
+                    <div class="flip-card-front" style="background-image: url('./Laurea.jpeg');">
+                        <span>4. Technical Excellence</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="story-label">Chapter Four</span>
+                        <h3>Master's & AI Innovation</h3>
+                        <p>Starting with limited foundational knowledge, I committed two years to mastering the
+                            fundamentals of computer science, programming, data structures, algorithms, machine
+                            learning, and AI. Right before graduation, I tested my abilities at the Google AI Hackathon,
+                            where my team reached the final (top 4 out of 60), with Edvige—an AI-powered agent that can
+                            increase knowledge worker productivity by up to 8 hours per week. I believe what
+                            distinguished our team was the product's clear identity, thoughtful design, and compelling
+                            mission that resonated with the judges.</p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+
+    <h2 class="story-title">
+        <span class="story-toggle">Passions and competitive sports</span>
+    </h2>
+
+    <div class="story-cards-container">
+        <!-- Card 1:-->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <!-- MODIFICA: Sostituisci './images/chapter1.jpg' con il percorso della tua immagine -->
+                <div class="flip-card-front video-card">
+                    <video src="./panawellness.mp4" autoplay muted loop playsinline>
+                    </video>
+                    <span class="video-title">Friends, music & Spritz</span>
+                </div>
+                <div class="flip-card-back">
+                    <span class="story-label">Chapter One</span>
+                    <h3>Understanding Perspectives</h3>
+                    <p>From an early age, I have been fascinated by the idea that multiple perspectives exist and that
+                        these different viewpoints can coexist to make our world better. To understand all these
+                        perspectives, I have tried to remain as open-minded as possible and explore new experiences. I
+                        began by pursuing a deeper understanding of the technical side of things, so I started studying
+                        mechanical engineering. Although not my true passion, I learned how to engage with rigorous and
+                        analytical individuals and to work diligently on subjects that didn't fully captivate me.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: SQUID & Product Discovery -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <!-- MODIFICA: Sostituisci './images/chapter2.jpg' con il percorso della tua immagine -->
+                <div class="flip-card-front video-card">
+                    <video src="./io a vela.mp4" autoplay muted loop playsinline>
+                    </video>
+                    <span class="video-title">Competitive sailing</span>
+                </div>
+
+                <div class="flip-card-back">
+                    <span class="story-label">Chapter Two</span>
+                    <h3>SQUID Journey Begins</h3>
+                    <p>Unsatisfied with my studies and seeking a different environment, I discovered SQUID as an
+                        opportunity to learn from a new angle. At SQUID, I started supervising the SQUID app, a news
+                        aggregator active in more than 60 countries globally. My role focused on content supervision and
+                        managing partnerships with publishing partners. I gradually transitioned into product
+                        management, working closely with the development team to improve user experience and retention.
+                        After 1.3 years, I had developed clear ideas about the product's direction, and to fully commit
+                        to product development, I decided to relocate to the Stockholm headquarters.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Leadership & Growth -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <!-- MODIFICA: Sostituisci './images/chapter3.jpg' con il percorso della tua immagine -->
+                <div class="flip-card-front video-card">
+                    <video src="./skitouring.mp4" autoplay muted loop playsinline>
+                    </video>
+                    <span class="video-title">Ski-touring</span>
+                </div>
+                <div class="flip-card-back">
+                    <span class="story-label">Chapter Three</span>
+                    <h3>Country Manager Era</h3>
+                    <p>After one year working part-time in Milan, I was promoted to full-time Italy Country Manager,
+                        with the mission to scale the Italian team from 2 to 7 people. I was also tasked with building
+                        the SQUID Business app from the ground up for the Italian market: establishing its identity,
+                        mission, go-to-market strategy, and growth plan. Over these 2.5 years, I realized I lacked the
+                        computer science skills necessary to follow development closely. This gap motivated me to pursue
+                        a master's degree in High Performance Computing Engineering, with a major in computer science
+                        and AI.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: Technical Mastery & AI -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <!-- MODIFICA: Sostituisci './images/chapter4.jpg' con il percorso della tua immagine -->
+                <div class="flip-card-front video-card">
+                    <video src="./bagno a stoccolma.mp4" autoplay muted loop playsinline>
+                    </video>
+                    <span class="video-title">New cultures & experiences</span>
+                </div>
+                <div class="flip-card-back">
+                    <span class="story-label">Chapter Four</span>
+                    <h3>Master's & AI Innovation</h3>
+                    <p>Starting with limited foundational knowledge, I committed two years to mastering the fundamentals
+                        of computer science, programming, data structures, algorithms, machine learning, and AI. Right
+                        before graduation, I tested my abilities at the Google AI Hackathon, where my team reached the
+                        final (top 4 out of 60), with Edvige—an AI-powered agent that can increase knowledge worker
+                        productivity by up to 8 hours per week. I believe what distinguished our team was the product's
+                        clear identity, thoughtful design, and compelling mission that resonated with the judges.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     </section>
 
     <!-- Portfolio Section -->
@@ -1035,7 +1319,8 @@
         <h2>Let's Talk</h2>
         <p>I am looking forward to meeting new people and exploring new opportunities in product management and
             development.</p>
-        <a href="mailto:gpisante01@gmail.com" class="contact-cta">Send Me an Email</a>
+        <a href="/cdn-cgi/l/email-protection#ee899e879d8f809a8bdedfae89838f8782c08d8183" class="contact-cta">Send Me an
+            Email</a>
     </section>
 
     <!-- Footer -->
@@ -1043,6 +1328,7 @@
         <p>&copy; 2026 Giuseppe Pisante. All rights reserved.</p>
     </footer>
 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         // Carousel functionality
         const carousels = document.querySelectorAll('.carousel-container');
@@ -1171,19 +1457,17 @@
                 }
             }
         });
-        // My Story toggle (Option 1)
-        const storyToggle = document.querySelector('.story-toggle');
-        const storyContent = document.getElementById('story-content');
+        // Flip Cards Functionality
+        const flipCards = document.querySelectorAll('.flip-card');
+        console.log('Flip cards trovate:', flipCards.length);
 
-        if (storyToggle && storyContent) {
-            storyToggle.addEventListener('click', () => {
-                const isExpanded = storyToggle.getAttribute('aria-expanded') === 'true';
-                storyToggle.setAttribute('aria-expanded', String(!isExpanded));
-
-                storyContent.classList.toggle('expanded', !isExpanded);
-                storyContent.classList.toggle('collapsed', isExpanded);
+        flipCards.forEach((card, index) => {
+            card.addEventListener('click', function (e) {
+                e.stopPropagation();
+                console.log('Card cliccata:', index);
+                this.classList.toggle('flipped');
             });
-        }
+        });
 
         // Featured Work toggle
         const workToggle = document.querySelector('.work-toggle');
@@ -1198,8 +1482,6 @@
                 workContent.classList.toggle('collapsed', isExpanded);
             });
         }
-
-
     </script>
 </body>
 
