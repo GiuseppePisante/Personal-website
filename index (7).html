@@ -895,146 +895,6 @@
             opacity: 0;
             transform: translateY(6px);
         }
-
-        /* === Product Case Study Style === */
-
-        .product-case {
-            gap: 1.4rem;
-        }
-
-        .product-title {
-            font-family: var(--serif);
-            font-size: 2rem;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.2rem;
-        }
-
-        .product-role {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-        }
-
-        .product-description {
-            font-size: 1.05rem;
-            color: var(--secondary);
-            margin-bottom: 2rem;
-            max-width: 420px;
-        }
-
-        .product-metrics {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .metric-value {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .metric-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--secondary);
-        }
-
-        .product-achievements h4 {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            margin-bottom: 0.8rem;
-            color: var(--primary);
-        }
-
-        .product-achievements ul {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 2rem;
-        }
-
-        .product-achievements li {
-            position: relative;
-            padding-left: 1.4rem;
-            margin-bottom: 0.6rem;
-            font-size: 0.95rem;
-            color: var(--secondary);
-        }
-
-        .product-achievements li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        .product-cta {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.8rem 1.8rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            width: fit-content;
-        }
-
-        .product-cta:hover {
-            background: var(--accent);
-        }
-
-        /* === Product metrics dividers (editorial style) === */
-
-        .product-metrics {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            padding: 2rem 0;
-            margin: 2.5rem 0;
-
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .product-metrics .metric {
-            padding: 0 1.5rem;
-        }
-
-        /* Vertical dividers between metrics */
-        .product-metrics .metric:not(:last-child) {
-            border-right: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        /* Slightly stronger metric number */
-        .metric-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        /* Label spacing refinement */
-        .metric-label {
-            margin-top: 0.3rem;
-        }
-
-        .portfolio-content .product-role {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-        }
     </style>
 </head>
 
@@ -1242,44 +1102,33 @@
                             <button class="carousel-dot" data-slide="2" data-carousel-index="0"></button>
                         </div>
                     </div>
-                    <div class="portfolio-content product-case">
-
-                        <h3 class="product-title">SQUID Business</h3>
-                        <p class="product-role">Italy Country Manager & Squid Business Lead</p>
-
-                        <p class="product-description">
-                            Premium news aggregator for financial & geopolitical intelligence
+                    <div class="portfolio-content">
+                        <div class="portfolio-label">SQUID Business</div>
+                        <h3>Premium news-aggregating app</h3>
+                        <p>SQUID Business is a news-aggregating app of economic, financial and geopolitical news,
+                            designed specifically to solve the information overload problem driven by clickbait and
+                            superficial content prevalent in traditional news platforms. SQUID Business moves beyond the
+                            conventions of surface-level information through a distinctive triadic system, where each
+                            topic is examined from three unique and complementary perspectives. News is not a collection
+                            of isolated fragments, but pieces of an intricate mosaic—and SQUID Business gives you the
+                            expertise to assemble them. Our commitment to journalistic excellence translates into a news
+                            flow that goes beyond the surface, delivering in-depth, rigorous, and timely analysis,
+                            powered by the best Italian and international sources.<br><br>
+                            SQUID Business has also been featured in
+                            <a href="https://www.milanofinanza.it/news/le-notizie-di-mf-milano-finanza-su-telegram-e-squid-business-202211231717113111"
+                                target="_blank" rel="noopener noreferrer">
+                                MF – Milano Finanza
+                            </a>,
+                            L’Economia del Corriere della Sera,
+                            and
+                            <a href="https://www.financialounge.com/news/2022/11/22/lanciato-squid-business-primo-aggregatore-di-notizie-finanziarie/"
+                                target="_blank" rel="noopener noreferrer">
+                                Financialounge
+                            </a>.
                         </p>
 
-                        <div class="product-metrics">
-                            <div class="metric">
-                                <span class="metric-value">9K</span>
-                                <span class="metric-label">Beta users</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">55%</span>
-                                <span class="metric-label">Day-30 retention</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">5.6%</span>
-                                <span class="metric-label">Push CTR</span>
-                            </div>
-                        </div>
-
-                        <div class="product-achievements">
-                            <h4>Key achievements</h4>
-                            <ul>
-                                <li>Designed and developed from the ground up</li>
-                                <li>+3.1% article CTR via A/B testing</li>
-                                <li>Featured in MF Milano Finanza & Corriere della Sera</li>
-                            </ul>
-                        </div>
-
-                        <a href="https://play.google.com/store/apps/details?id=co.squidapp.squidpremium"
-                            class="product-cta">
-                            View on App Store →
-                        </a>
-
+                        <a href="https://play.google.com/store/apps/details?id=co.squidapp.squidpremium&hl=it"
+                            class="portfolio-link">Learn More →</a>
                     </div>
                 </div>
 
@@ -1348,44 +1197,19 @@
                             <button class="carousel-dot" data-slide="2" data-carousel-index="2"></button>
                         </div>
                     </div>
-                    <div class="portfolio-content product-case">
-
-                        <h3 class="product-title">SQUID Business</h3>
-                        <p class="product-role">Part-time Italy Country Manager</p>
-
-                        <p class="product-description">
-                            Premium news aggregator for financial & geopolitical intelligence
+                    <div class="portfolio-content">
+                        <div class="portfolio-label">SQUID</div>
+                        <h3>Global Personalized News Aggregator</h3>
+                        <p>
+                            SQUID is a mobile news app aggregating thousands of trusted publishers across 60+ countries
+                            and multiple categories.
+                            It solves information overload by delivering a fully personalized feed without requiring
+                            registration, enabling
+                            millions of users to stay informed quickly while driving high traffic and visibility to
+                            media partners.
                         </p>
-
-                        <div class="product-metrics">
-                            <div class="metric">
-                                <span class="metric-value">40K</span>
-                                <span class="metric-label">DAU</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">90K</span>
-                                <span class="metric-label">WAU</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">180K</span>
-                                <span class="metric-label">MAU</span>
-                            </div>
-                        </div>
-
-                        <div class="product-achievements">
-                            <h4>Key achievements</h4>
-                            <ul>
-                                <li>Increased MAU by 15%</li>
-                                <li>+1.5% push notification CTR via A/B testing</li>
-                                <li>+11% retention by improving onboarding through funnel analysis</li>
-                            </ul>
-                        </div>
-
                         <a href="https://play.google.com/store/apps/details?id=co.squidapp.squid&hl=en"
-                            class="product-cta">
-                            View on App Store →
-                        </a>
-
+                            class="portfolio-link">Learn More →</a>
                     </div>
                 </div>
             </div>
@@ -1409,9 +1233,12 @@
                 <div class="flip-card-back">
                     <span class="story-label">Chapter One</span>
                     <h3>Understanding Perspectives</h3>
-                    <p>
-
-                    </p>
+                    <p>From an early age, I have been fascinated by the idea that multiple perspectives exist and that
+                        these different viewpoints can coexist to make our world better. To understand all these
+                        perspectives, I have tried to remain as open-minded as possible and explore new experiences. I
+                        began by pursuing a deeper understanding of the technical side of things, so I started studying
+                        mechanical engineering. Although not my true passion, I learned how to engage with rigorous and
+                        analytical individuals and to work diligently on subjects that didn't fully captivate me.</p>
                 </div>
             </div>
         </div>
@@ -1429,9 +1256,13 @@
                 <div class="flip-card-back">
                     <span class="story-label">Chapter Two</span>
                     <h3>SQUID Journey Begins</h3>
-                    <p>
-
-                    </p>
+                    <p>Unsatisfied with my studies and seeking a different environment, I discovered SQUID as an
+                        opportunity to learn from a new angle. At SQUID, I started supervising the SQUID app, a news
+                        aggregator active in more than 60 countries globally. My role focused on content supervision and
+                        managing partnerships with publishing partners. I gradually transitioned into product
+                        management, working closely with the development team to improve user experience and retention.
+                        After 1.3 years, I had developed clear ideas about the product's direction, and to fully commit
+                        to product development, I decided to relocate to the Stockholm headquarters.</p>
                 </div>
             </div>
         </div>
@@ -1448,9 +1279,13 @@
                 <div class="flip-card-back">
                     <span class="story-label">Chapter Three</span>
                     <h3>Country Manager Era</h3>
-                    <p>
-
-                    </p>
+                    <p>After one year working part-time in Milan, I was promoted to full-time Italy Country Manager,
+                        with the mission to scale the Italian team from 2 to 7 people. I was also tasked with building
+                        the SQUID Business app from the ground up for the Italian market: establishing its identity,
+                        mission, go-to-market strategy, and growth plan. Over these 2.5 years, I realized I lacked the
+                        computer science skills necessary to follow development closely. This gap motivated me to pursue
+                        a master's degree in High Performance Computing Engineering, with a major in computer science
+                        and AI.</p>
                 </div>
             </div>
         </div>
@@ -1467,16 +1302,19 @@
                 <div class="flip-card-back">
                     <span class="story-label">Chapter Four</span>
                     <h3>Master's & AI Innovation</h3>
-                    <p>
-
-                    </p>
+                    <p>Starting with limited foundational knowledge, I committed two years to mastering the fundamentals
+                        of computer science, programming, data structures, algorithms, machine learning, and AI. Right
+                        before graduation, I tested my abilities at the Google AI Hackathon, where my team reached the
+                        final (top 4 out of 60), with Edvige—an AI-powered agent that can increase knowledge worker
+                        productivity by up to 8 hours per week. I believe what distinguished our team was the product's
+                        clear identity, thoughtful design, and compelling mission that resonated with the judges.</p>
                 </div>
             </div>
         </div>
     </div>
     </section>
 
-
+    
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
